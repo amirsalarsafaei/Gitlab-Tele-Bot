@@ -1,12 +1,13 @@
 package config
 
 import (
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"os"
 	"path"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 type Config struct {

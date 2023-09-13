@@ -2,9 +2,11 @@ package telegram
 
 import (
 	"context"
+
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/config"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients"
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 type notifierBot struct {

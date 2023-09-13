@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/serve"
 	"github.com/spf13/cobra"
+
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/serve"
 )
 
 var (

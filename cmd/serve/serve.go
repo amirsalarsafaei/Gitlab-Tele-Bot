@@ -2,15 +2,17 @@ package serve
 
 import (
 	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/config"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/telegram"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/merge"
-	"github.com/gorilla/mux"
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-	"net/http"
-	"time"
 )
 
 var (
