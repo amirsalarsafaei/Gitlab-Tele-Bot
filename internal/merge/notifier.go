@@ -17,5 +17,5 @@ func (h Handler) Notifier(resp http.ResponseWriter, req *http.Request) {
 
 	reqJSON, err := json.MarshalIndent(reqMap, "", "\t")
 
-	fmt.Println(reqJSON)
+	fmt.Println(string(reqJSON))
 }
