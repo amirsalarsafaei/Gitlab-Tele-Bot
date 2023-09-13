@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# IDE
+.idea
+.vscode
+
+config.yaml
