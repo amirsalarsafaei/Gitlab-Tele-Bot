@@ -9,11 +9,13 @@ import (
 )
 
 func (h Handler) Notifier(resp http.ResponseWriter, req *http.Request) {
-	var reqJson map[string]interface{}
-	err := json.NewDecoder(req.Body).Decode(&reqJson)
+	var reqMap map[string]interface{}
+	err := json.NewDecoder(req.Body).Decode(&reqMap)
 	if err != nil {
 		log.WithError(err).Error("merge notifier failed")
 	}
 
-	fmt.Println(reqJson)
+	reqJSON, err := json.MarshalIndent(reqMap, "", "\t")
+
+	fmt.Println(reqJSON)
 }
