@@ -29,9 +29,9 @@ func LoadConfig() *Config {
 	cobra.CheckErr(err)
 	viper.AddConfigPath(home)
 	viper.AddConfigPath(".")
-	viper.SetConfigName("config")
+	viper.SetConfigName("notifier-config")
 
-	if fileExists("./config.yaml") || fileExists(path.Join(home, "config.yaml")) {
+	if fileExists("./notifier-config.yaml") || fileExists(path.Join(home, "notifier-config.yaml")) {
 		err = viper.ReadInConfig()
 		log.Infof("using config file: %s", viper.ConfigFileUsed())
 		cobra.CheckErr(err)
