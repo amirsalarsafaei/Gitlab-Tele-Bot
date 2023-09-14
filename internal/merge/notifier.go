@@ -16,9 +16,9 @@ func (h Handler) Notifier(resp http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	err = h.Handle(event)
+	err = h.Handle(req.Context(), event)
 	if err != nil {
-		log.WithError(err).Error("merge notifier failed")
+		log.WithError(err).Error("failed to send message")
 		resp.WriteHeader(400)
 		return
 	}

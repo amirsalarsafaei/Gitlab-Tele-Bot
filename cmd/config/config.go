@@ -8,14 +8,22 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/telegram"
 )
 
 type Config struct {
-	Token string `mapstructure:"token"`
+	Telegram *telegram.Config `mapstructure:"telegram"`
+
+	Secret string `mapstructure:"secret"`
 }
 
 func LoadConfig() *Config {
-	viper.SetDefault("token", "")
+	viper.SetDefault("telegram.token", "sometoken")
+	viper.SetDefault("telegram.chat_id", 0)
+	viper.SetDefault("telegram.thread_id", 0)
+
+	viper.SetDefault("secret", "")
 
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)

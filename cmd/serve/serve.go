@@ -11,8 +11,10 @@ import (
 
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/config"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients"
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/stdout"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/telegram"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/merge"
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/pkg/gitlab"
 )
 
 var (
@@ -32,8 +34,14 @@ func serve(cmd *cobra.Command, args []string) error {
 	port := args[0]
 	conf := config.LoadConfig()
 
+	telegramBot, err := telegram.NewBot(conf.Telegram)
+	if err != nil {
+		return err
+	}
+
 	brokers := []clients.MessageBroker{
-		telegram.NewBot(conf),
+		telegramBot,
+		stdout.NewPrintBot(),
 	}
 
 	mergeHandler := merge.Handler{
@@ -41,6 +49,8 @@ func serve(cmd *cobra.Command, args []string) error {
 	}
 
 	r := mux.NewRouter()
+	r.Use(gitlab.NewGitLabAuthMiddleWare(conf.Secret))
+
 	r.HandleFunc("/merge", mergeHandler.Notifier)
 
 	srv := &http.Server{
