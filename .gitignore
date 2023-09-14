@@ -25,4 +25,6 @@ go.work
 .vscode
 
 config.yaml
+notifier-config.yaml
+
 notifier-cli
