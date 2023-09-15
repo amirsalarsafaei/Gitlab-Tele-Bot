@@ -3,6 +3,8 @@ Gitlab Telegram Bot
 
 This a webhook server for Gitlab webhook events. It sends important notification to the telegram chat/group/forum.
 
+![sample](https://github.com/amirsalarsafaei/Gitlab-Tele-Bot/blob/main/Sample%20Merge%20Request%20Message.png)
+
 # How To Use
 First, install the latest version using Go's intuitive tool.
 
