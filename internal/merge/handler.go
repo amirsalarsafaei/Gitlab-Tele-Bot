@@ -14,7 +14,7 @@ type Handler struct {
 }
 
 func (h Handler) Handle(ctx context.Context, event Event) error {
-	if event.EventType != "merge_request" || event.Attributes.State != "merged" {
+	if event.EventType != "merge_request" || event.Attributes.State != "merged" || event.Attributes.Action != "merge" {
 		return nil
 	}
 
