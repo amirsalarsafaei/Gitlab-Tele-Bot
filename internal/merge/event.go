@@ -119,8 +119,8 @@ type Event struct {
 		Email     string `json:"email"`
 	} `json:"assignees"`
 
-	gitlab.User
+	gitlab.User `json:"user"`
 
-	gitlab.Project
-	gitlab.Repository
+	gitlab.Project    `json:"project"`
+	gitlab.Repository `json:"repository"`
 }
