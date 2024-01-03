@@ -11,9 +11,16 @@ import (
 )
 
 type Handler struct {
-	Brokers []clients.MessageBroker
+	brokers []clients.MessageBroker
 
 	config MergeConfig
+}
+
+func NewHandler(brokers []clients.MessageBroker, config MergeConfig) Handler {
+	return Handler{
+		brokers: brokers,
+		config:  config,
+	}
 }
 
 func (h Handler) Handle(ctx context.Context, event Event) error {

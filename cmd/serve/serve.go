@@ -44,9 +44,7 @@ func serve(cmd *cobra.Command, args []string) error {
 		stdout.NewPrintBot(),
 	}
 
-	mergeHandler := merge.Handler{
-		Brokers: brokers,
-	}
+	mergeHandler := merge.NewHandler(brokers, conf.Merge)
 
 	r := mux.NewRouter()
 	r.Use(gitlab.NewGitLabAuthMiddleWare(conf.Secret))
