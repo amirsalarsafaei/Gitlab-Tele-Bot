@@ -23,6 +23,8 @@ func (h Handler) Handle(ctx context.Context, event Event) error {
 		messageTemplate,
 		event.Attributes.Title,
 		event.Attributes.LastCommit.Author.Name,
+		getReviewersText(event),
+		sanitizeDescription(event.Attributes.Description),
 		quote.QuoteText, quote.QuoteAuthor,
 		event.Attributes.Url,
 	)

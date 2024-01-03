@@ -121,6 +121,14 @@ type Event struct {
 
 	gitlab.User `json:"user"`
 
+	Reviewers []struct {
+		Id        int    `json:"id"`
+		Name      string `json:"name"`
+		Username  string `json:"username"`
+		AvatarUrl string `json:"avatar_url"`
+		Email     string `json:"email"`
+	} `json:"reviewers"`
+
 	gitlab.Project    `json:"project"`
 	gitlab.Repository `json:"repository"`
 }
