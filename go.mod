@@ -1,6 +1,6 @@
 module github.com/amirsalarsafaei/Gitlab-Tele-Bot
 
-go 1.20
+go 1.21
 
 require (
 	github.com/amirsalarsafaei/telegram-bot-api/v5 v5.6.3

@@ -58,6 +58,8 @@ func (h Handler) Handle(ctx context.Context, event Event) error {
 		}
 	}
 
+	diff = diff[:min(len(diff), 2000)]
+
 	quote := quotes.GetQuote()
 	message := fmt.Sprintf(
 		messageTemplate,
