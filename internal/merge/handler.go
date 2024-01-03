@@ -74,7 +74,7 @@ func (h Handler) Handle(ctx context.Context, event Event) error {
 	)
 
 	var errs []error
-	for _, broker := range h.Brokers {
+	for _, broker := range h.brokers {
 		err := broker.SendMessage(ctx, message)
 		if err != nil {
 			errs = append(errs, err)
