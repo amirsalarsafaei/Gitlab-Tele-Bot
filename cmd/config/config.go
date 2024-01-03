@@ -10,10 +10,13 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/telegram"
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/merge"
 )
 
 type Config struct {
 	Telegram *telegram.Config `mapstructure:"telegram"`
+
+	Merge merge.MergeConfig `json:"merge"`
 
 	Secret string `mapstructure:"secret"`
 }
@@ -22,6 +25,10 @@ func LoadConfig() *Config {
 	viper.SetDefault("telegram.token", "sometoken")
 	viper.SetDefault("telegram.chat_id", 0)
 	viper.SetDefault("telegram.thread_id", 0)
+
+	viper.SetDefault("merge.diff.enabled", false)
+	viper.SetDefault("merge.diff.api_key", "apikey")
+	viper.SetDefault("merge.diff.gitlab_host", "example.gitlab.com")
 
 	viper.SetDefault("secret", "")
 
