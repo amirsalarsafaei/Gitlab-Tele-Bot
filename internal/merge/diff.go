@@ -11,7 +11,7 @@ import (
 	"strconv"
 )
 
-var diffRegex = regexp.MustCompile(`@@ -\d+,(\d+) \+\d+,(\d)+ @@`)
+var diffRegex = regexp.MustCompile(`@@ -\d+,(\d+) \+\d+,(\d+) @@`)
 
 type DiffResponse []Diff
 

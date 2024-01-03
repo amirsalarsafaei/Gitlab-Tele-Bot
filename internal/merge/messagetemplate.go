@@ -3,7 +3,7 @@ package merge
 const messageTemplate = `Title: %s
 👨‍💻Author: %s
 🕵️‍♂️Reviewed by: %s
--%d +%d
+-%d, +%d
 Description:
 %s
 
