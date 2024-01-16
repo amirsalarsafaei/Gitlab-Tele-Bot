@@ -1,10 +1,10 @@
 package merge
 
-const messageTemplate = `Title: %s
+const messageTemplate = `%s
 👨‍💻Author: %s
-🕵️‍♂️Reviewed by: %s
+🕵️‍♂️Reviewers: %s
 -%d, +%d
-Description:
+
 %s
 
 💡Quote: %s - %s
