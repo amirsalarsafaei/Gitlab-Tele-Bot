@@ -43,22 +43,22 @@ func (h Handler) Handle(ctx context.Context, event Event) error {
 			totalAdded += added
 			switch {
 			case diffI.DeletedFile:
-				diff += fmt.Sprintf("❌removed %s, %d lines", diffI.NewPath, removed)
+				diff += fmt.Sprintf("❌ %s, -%d", diffI.NewPath, removed)
 			case diffI.NewFile:
-				diff += fmt.Sprintf("🆕new file %s, %d lines", diffI.NewPath, added)
+				diff += fmt.Sprintf("🆕 %s, +%d", diffI.NewPath, added)
 			case diffI.RenamedFile:
-				diff += fmt.Sprintf("📛renamed from %s and ", diffI.OldPath)
+				diff += fmt.Sprintf("📛 %s ", diffI.OldPath)
 			default:
-				diff += fmt.Sprintf("✍️edited file %s, %d line removed, %d line added", diffI.NewPath, removed, added)
+				diff += fmt.Sprintf("✍️%s +%d -%d", diffI.NewPath, added, removed)
 			}
 
 			if i != len(diffs)-1 {
-				diff += "\n\n"
+				diff += "\n"
 			}
 		}
 	}
 
-	diff = diff[:min(len(diff), 2000)]
+	diff = diff[:min(len(diff), 3000)]
 
 	quote := quotes.GetQuote()
 	message := fmt.Sprintf(
