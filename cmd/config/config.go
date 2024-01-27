@@ -30,8 +30,8 @@ func LoadConfig() *Config {
 	viper.SetDefault("telegram.thread_id", 0)
 
 	viper.SetDefault("merge.diff.enabled", false)
-	viper.SetDefault("merge.diff.api_key", "apikey")
-	viper.SetDefault("merge.diff.gitlab_host", "example.gitlab.com")
+	viper.SetDefault("git.apikey", "apikey")
+	viper.SetDefault("git.gitlabhost", "example.gitlab.com")
 
 	viper.SetDefault("secret", "")
 

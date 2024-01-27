@@ -1,6 +1,6 @@
 package git
 
 type GitConfig struct {
-	APIKey     string `mapstructure:"apiKey"`
-	GitLabHost string `mapstructure:"gitlabHost"`
+	APIKey     string `mapstructure:"apikey"`
+	GitLabHost string `mapstructure:"gitlabhost"`
 }
