@@ -16,7 +16,12 @@ func (h Handler) Notifier(resp http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	err = h.Handle(req.Context(), event)
+	if event.EventType != "merge_request" || event.Attributes.State != "merged" || event.Attributes.Action != "merge" {
+		return
+	}
+
+	err = h.Handle(req.Context(), event.Project.Id, event.Attributes.Iid, event.Attributes.Title,
+		event.Attributes.Description, event.Attributes.Url, event.Attributes.LastCommit.Author, event.Reviewers)
 	if err != nil {
 		log.WithError(err).Error("failed to send message")
 		resp.WriteHeader(400)

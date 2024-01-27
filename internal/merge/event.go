@@ -81,10 +81,7 @@ type Event struct {
 			Title     string    `json:"title"`
 			Timestamp time.Time `json:"timestamp"`
 			Url       string    `json:"url"`
-			Author    struct {
-				Name  string `json:"name"`
-				Email string `json:"email"`
-			} `json:"author"`
+			Author    `json:"author"`
 		} `json:"last_commit"`
 		WorkInProgress              bool          `json:"work_in_progress"`
 		TotalTimeSpent              int           `json:"total_time_spent"`
@@ -121,14 +118,21 @@ type Event struct {
 
 	gitlab.User `json:"user"`
 
-	Reviewers []struct {
-		Id        int    `json:"id"`
-		Name      string `json:"name"`
-		Username  string `json:"username"`
-		AvatarUrl string `json:"avatar_url"`
-		Email     string `json:"email"`
-	} `json:"reviewers"`
+	Reviewers `json:"reviewers"`
 
 	gitlab.Project    `json:"project"`
 	gitlab.Repository `json:"repository"`
+}
+
+type Reviewers []struct {
+	Id        int    `json:"id"`
+	Name      string `json:"name"`
+	Username  string `json:"username"`
+	AvatarUrl string `json:"avatar_url"`
+	Email     string `json:"email"`
+}
+
+type Author struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
 }

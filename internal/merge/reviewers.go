@@ -1,14 +1,14 @@
 package merge
 
-func getReviewersText(event Event) string {
-	if len(event.Reviewers) == 0 {
+func getReviewersText(reviewers Reviewers) string {
+	if len(reviewers) == 0 {
 		return "No Reviewers"
 	}
 
 	res := ""
-	for i, rev := range event.Reviewers {
+	for i, rev := range reviewers {
 		res += rev.Name
-		if i != len(event.Reviewers)-1 {
+		if i != len(reviewers)-1 {
 			res += ", "
 		}
 	}
