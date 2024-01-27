@@ -10,13 +10,16 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients/telegram"
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/git"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/merge"
 )
 
 type Config struct {
 	Telegram *telegram.Config `mapstructure:"telegram"`
 
-	Merge merge.MergeConfig `json:"merge"`
+	Merge merge.MergeConfig `mapstructure:"merge"`
+
+	Git git.GitConfig `mapstructure:"git"`
 
 	Secret string `mapstructure:"secret"`
 }

@@ -1,11 +1,9 @@
 package merge
 
 type DiffConfig struct {
-	Enabled    bool   `json:"enabled"`
-	APIKey     string `json:"apiKey"`
-	GitLabHost string `json:"gitlabHost"`
+	Enabled bool `mapstructure:"enabled"`
 }
 
 type MergeConfig struct {
-	Diff DiffConfig `json:"diff"`
+	Diff DiffConfig `mapstructure:"diff"`
 }

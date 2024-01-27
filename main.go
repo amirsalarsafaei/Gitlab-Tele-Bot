@@ -4,5 +4,7 @@ import "github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd"
 
 func main() {
 	err := cmd.Execute()
-	panic(err.Error())
+	if err != nil {
+		panic(err.Error())
+	}
 }

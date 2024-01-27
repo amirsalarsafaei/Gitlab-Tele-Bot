@@ -43,7 +43,7 @@ func (h Handler) getMergeRequestDiff(ctx context.Context, repoID int, mergeID in
 	req, err := http.NewRequestWithContext(
 		ctx,
 		"GET",
-		fmt.Sprintf("https://%s/api/v4/projects/%d/merge_requests/%d/diffs", h.config.Diff.GitLabHost, repoID, mergeID),
+		fmt.Sprintf("https://%s/api/v4/projects/%d/merge_requests/%d/diffs", h.gitConfig.GitLabHost, repoID, mergeID),
 		nil,
 	)
 
@@ -55,7 +55,7 @@ func (h Handler) getMergeRequestDiff(ctx context.Context, repoID int, mergeID in
 		return nil, errors.Wrap(err, "could not create http request")
 	}
 
-	req.Header.Set("PRIVATE-TOKEN", h.config.Diff.APIKey)
+	req.Header.Set("PRIVATE-TOKEN", h.gitConfig.APIKey)
 
 	client := &http.Client{}
 	resp, err := client.Do(req)

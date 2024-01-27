@@ -7,6 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/clients"
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/internal/git"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/pkg/quotes"
 )
 
@@ -14,25 +15,27 @@ type Handler struct {
 	brokers []clients.MessageBroker
 
 	config MergeConfig
+
+	gitConfig git.GitConfig
 }
 
-func NewHandler(brokers []clients.MessageBroker, config MergeConfig) Handler {
+func NewHandler(brokers []clients.MessageBroker, config MergeConfig, gitConfig git.GitConfig) Handler {
 	return Handler{
 		brokers: brokers,
-		config:  config,
+
+		config:    config,
+		gitConfig: gitConfig,
 	}
 }
 
-func (h Handler) Handle(ctx context.Context, event Event) error {
-	if event.EventType != "merge_request" || event.Attributes.State != "merged" || event.Attributes.Action != "merge" {
-		return nil
-	}
+func (h Handler) Handle(ctx context.Context, projectID, iid int, title, description, url string,
+	author Author, reviewers Reviewers) error {
 
 	var diff string
 
 	var totalRemoved, totalAdded int
 	if h.config.Diff.Enabled {
-		diffs, err := h.getMergeRequestDiff(ctx, event.Project.Id, event.Attributes.Iid)
+		diffs, err := h.getMergeRequestDiff(ctx, projectID, iid)
 		if err != nil {
 			log.WithError(err).Error("could not get diffs")
 		}
@@ -63,14 +66,14 @@ func (h Handler) Handle(ctx context.Context, event Event) error {
 	quote := quotes.GetQuote()
 	message := fmt.Sprintf(
 		messageTemplate,
-		event.Attributes.Title,
-		event.Attributes.LastCommit.Author.Name,
-		getReviewersText(event),
+		title,
+		author.Name,
+		getReviewersText(reviewers),
 		totalRemoved, totalAdded,
-		sanitizeDescription(event.Attributes.Description),
+		sanitizeDescription(description),
 		quote.QuoteText, quote.QuoteAuthor,
 		diff,
-		event.Attributes.Url,
+		url,
 	)
 
 	var errs []error

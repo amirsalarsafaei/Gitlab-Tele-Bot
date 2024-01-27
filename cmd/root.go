@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
+	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/run"
 	"github.com/amirsalarsafaei/Gitlab-Tele-Bot/cmd/serve"
 )
 
@@ -19,4 +20,5 @@ func Execute() error {
 
 func init() {
 	RootCmd.AddCommand(serve.Cmd)
+	RootCmd.AddCommand(run.Cmd)
 }
